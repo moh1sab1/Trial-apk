@@ -1,0 +1,28 @@
+<html>
+<style type="text/css">
+h1{
+color: red;
+}
+</style>
+<script type="text/javascript">
+function show() {
+var a;
+a=document.getElementById("name").value;
+a=a.trim();
+a=a.toUpperCase();
+if(a=="") {alert("Error!"); return;}
+if(a!="") {alert("Hello "+a); return;}
+return;
+}
+</script>
+<head>
+<title>Name</title>
+</head>
+<body>
+<h1>Welcome</h1><br/>
+Name:<br/>
+<input type="text" value="" id="name"/>
+<br/><br/>
+<input type="button" value="Send" onclick="show();"/>
+</body>
+</html>
