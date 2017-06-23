@@ -2,7 +2,9 @@
 <script type="text/javascript">
 function checker() {
 var a=document.getElementById("data_title").value;
-if(a=="") {document.getElementById("span_title").innerHTML=" Error!";}
+if(a=="") {document.getElementById("span_title").innerHTML=" Error!"; return;}
+if(a!="") {document.getElementById("span_title").innerHTML=""; return;}
+return
 }
 </script>
 <style type="text/css">
