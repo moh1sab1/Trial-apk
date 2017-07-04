@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function checker() {
+var a=document.getElementById("data_years").value; a=a.trim();
+var b=(a=="");
+if(b) {alert("Wrong entry. Please try again."); return;}
+if(!b) {sessionStorage.setItem("data_years",a); window.location="06_currency.html";}
+return;
+}
+</script>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<title>Feasibilities 2017</title>
+</head>
+<body bgcolor="white" background="background1.jpg">
+<div style="color:red; font-family:arial; font-size:14; font-weight:bold;">Data entry: Step 5 of 15:</div>
+<br/>
+<div class="boxed">
+<div>
+<p>Number of years of expected project life:</p>
+</div>
+<div>
+<select id="data_years"/>
+<option value=""></option>
+<option value="1">1 year</option>
+<option value="2">2 years</option>
+<option value="3">3 years</option>
+<option value="4">4 years</option>
+<option value="5">5 years</option>
+<option value="6">6 years</option>
+<option value="7">7 years</option>
+<option value="8">8 years</option>
+<option value="9">9 years</option>
+<option value="10">10 years</option>
+<option value="11">11 years</option>
+<option value="12">12 years</option>
+<option value="13">13 years</option>
+<option value="14">14 years</option>
+<option value="15">15 years</option>
+</select>
+</div>
+<br/>
+<div>
+<input type="button" value="Next" onclick="checker();"/>
+</div>
+<br/>
+<div>
+<input type="button" value="Back" onclick="var r=confirm('Are you sure you want to return back?'); if(r) {window.location='04_start.html';}"/>
+</div>
+<br/>
+<div>
+<input type="button" value="Help" onclick="alert('This is the number of years you expect the project to be in operations. It cannot be an empty value.');"/>
+</div>
+</div>
+</body>
+</html>

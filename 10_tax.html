@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function checker() {
+var a=document.getElementById("data_tax").value; a=a.trim();
+var b=(a=="");
+if(b) {alert("Wrong entry. Please try again."); return;}
+if(!b) {sessionStorage.setItem("data_tax",a); window.location="11_overhead.html";}
+return;
+}
+</script>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<title>Feasibilities 2017</title>
+</head>
+<body bgcolor="white" background="background1.jpg">
+<div style="color:red; font-family:arial; font-size:14; font-weight:bold;">Data entry: Step 10 of 14:</div>
+<br/>
+<div class="boxed">
+<div>
+<p>The annual tax rate the project will have to pay on its net profit:</p>
+</div>
+<div>
+<select id="data_tax"/>
+<option value=""></option>
+<script type="text/javascript">
+var x;
+for(i=1;i<100;i++) {
+x="<option value="+i+">"+i+"%"+"</option>";
+document.write(x);
+}
+</script>
+</select>
+</div>
+<br/>
+<div>
+<input type="button" value="Next" onclick="checker();"/>
+</div>
+<br/>
+<div>
+<input type="button" value="Back" onclick="var r=confirm('Are you sure you want to return back?'); if(r) {window.location='08_available.html';}"/>
+</div>
+<br/>
+<div>
+<input type="button" value="Help" onclick="alert('This is the annual interest rate the project will have to pay on any borrowings. It cannot be an empty value.');"/>
+</div>
+</div>
+</body>
+</html>
