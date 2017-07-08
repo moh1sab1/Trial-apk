@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function checker() {
+var a=document.getElementById("data_overhead").value; a=a.trim(); var c=parseInt(a);
+var b=(a=="" || isNaN(a) || a!=c || c<100 || c>1000000);
+if(b) {alert("بيان خاطئ أو ناقص. حاول من جديد"); return;}
+if(!b) {sessionStorage.setItem("data_overhead",c*12); window.location="12_inflation.html";}
+return;
+}
+</script>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<title>Feasibilities 2017</title>
+</head>
+<body bgcolor="magnetta">
+<p>الخطوة 11 من 14</p>
+<div class="boxed">
+<div>
+<p>القيمة المتوقعة للمصاريف الثابتة في الشهر الأول من عمر المشروع</p>
+</div>
+<div>
+<input type="number" value="" id="data_overhead"/>
+</div>
+<br/>
+<div>
+<input type="button" value="التالي" onclick="checker();"/>
+</div>
+<br/>
+<div>
+<input type="button" value="السابق" onclick="var r=confirm('Are you sure you want to return back?'); if(r) {window.location='10_tax.html';}"/>
+</div>
+<br/>
+<div>
+<input type="button" value="مساعدة" onclick="alert('This is the value of overhead or fixed expenses in the first MONTH of the life of the project; eg: 12000. It cannot be an empty value. It must contain only digits. No spaces, letters, or decimal points are allowed. Its minimum value is 100 and its maximum value is 1000000.');"/>
+</div>
+</div>
+</body>
+</html>

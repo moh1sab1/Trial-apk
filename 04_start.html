@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function checker() {
+var a=document.getElementById("data_start").value; a=a.trim();
+var b=(a=="");
+if(b) {alert("بيان خاطئ أو ناقص. حاول من جديد"); return;}
+if(!b) {sessionStorage.setItem("data_start",a); window.location="05_years.html";}
+return;
+}
+</script>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<title>Feasibilities 2017</title>
+</head>
+<body bgcolor="magnetta">
+<p>الخطوة 4 من 14</p>
+<div class="boxed">
+<div>
+<p>سنة بدء المشروع</p>
+</div>
+<div>
+<select id="data_start"/>
+<option value=""></option>
+<option value="2017">2017</option>
+<option value="2018">2018</option>
+<option value="2019">2019</option>
+<option value="2020">2020</option>
+<option value="2021">2021</option>
+<option value="2022">2022</option>
+</select>
+</div>
+<br/>
+<div>
+<input type="button" value="التالي" onclick="checker();"/>
+</div>
+<br/>
+<div>
+<input type="button" value="السابق" onclick="var r=confirm('Are you sure you want to return back?'); if(r) {window.location='03_description.html';}"/>
+</div>
+<br/>
+<div>
+<input type="button" value="مساعدة" onclick="alert('This is the year you plan to start your project. It cannot be an empty value.');"/>
+</div>
+</div>
+</body>
+</html>

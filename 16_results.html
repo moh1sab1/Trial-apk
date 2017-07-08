@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<script type="text/javascript">
+function splitter(x) {
+var a=new Array(); var y=x.trim();
+a=y.split(',');
+return a;
+}
+function checker() {
+var r=confirm('Really dismiss results and start over?\nMake sure first you have taken screenshots of all results.');
+if(r!="") {window.location="index.html";}
+return;
+}
+</script>
+<title>Feasibilities 2017</title>
+</head>
+<body bgcolor="magnetta" dir="rtl">
+<script type="text/javascript">
+var title=sessionStorage.getItem("title");
+var author=sessionStorage.getItem("author");
+var description=sessionStorage.getItem("description");
+var start=sessionStorage.getItem("start"); start='Year '+start;
+var years=sessionStorage.getItem("years"); years=parseInt(years);
+var currency=sessionStorage.getItem("currency");
+var startup=sessionStorage.getItem("startup"); startup=currency+" "+startup;
+var interest=sessionStorage.getItem("interest"); interest=parseFloat(interest); interest=interest*100; interest=interest.toFixed(0);
+var inflation=sessionStorage.getItem("inflation"); inflation=parseFloat(inflation); inflation=inflation*100; inflation=inflation.toFixed(0); inflation=String(inflation)+'%';
+var revenues=sessionStorage.getItem("revenues"); revenues=splitter(revenues);
+var vcs=sessionStorage.getItem("vcs"); vcs=splitter(vcs);
+var contributions=sessionStorage.getItem("contributions"); contributions=splitter(contributions);
+var fixeds=sessionStorage.getItem("fixeds"); fixeds=splitter(fixeds);
+var operatings=sessionStorage.getItem("operatings"); operatings=splitter(operatings);
+var depreciations=sessionStorage.getItem("depreciations"); depreciations=splitter(depreciations);
+var basics=sessionStorage.getItem("basics"); basics=splitter(basics);
+var interests=sessionStorage.getItem("interests"); interests=splitter(interests);
+var ebt=sessionStorage.getItem("ebt"); ebt=splitter(ebt);
+var taxes=sessionStorage.getItem("taxes"); taxes=splitter(taxes);
+var npt=sessionStorage.getItem("npt"); npt=splitter(npt);
+var lyears=sessionStorage.getItem("lyears"); lyears=splitter(lyears);
+var list_inflows=sessionStorage.getItem("list_inflows"); list_inflows=splitter(list_inflows);
+var list_outflows=sessionStorage.getItem("list_outflows"); list_outflows=splitter(list_outflows);
+var list_netflows=sessionStorage.getItem("list_netflows"); list_netflows=splitter(list_netflows);
+var list_gpm=sessionStorage.getItem("list_gpm"); list_gpm=splitter(list_gpm);
+var list_opm=sessionStorage.getItem("list_opm"); list_opm=splitter(list_opm);
+var list_ebtm=sessionStorage.getItem("list_ebtm"); list_ebtm=splitter(list_ebtm);
+var list_markups=sessionStorage.getItem("list_markups"); list_markups=splitter(list_markups);
+var list_nptm=sessionStorage.getItem("list_nptm"); list_nptm=splitter(list_nptm);
+var list_roi=sessionStorage.getItem("list_roi"); list_roi=splitter(list_roi);
+var arr=sessionStorage.getItem("arr"); arr=parseInt(arr);
+var aroi=sessionStorage.getItem("aroi"); aroi=parseInt(aroi);
+var npv=sessionStorage.getItem("npv"); npv=parseInt(npv);
+var pbk=sessionStorage.getItem("pbk"); pbk=parseFloat(pbk); pbk=pbk.toFixed(2);
+document.write("<h1>تقرير دراسة جدوى</h1>");
+document.write("<h3>بيانات عامة حول المشروع</h3>");
+document.write('<span>* اسم المشروع </span>'+": "+title+'<br/>');
+document.write("<span>* اسم صاحب المشروع </span>"+": "+author+'<br/>');
+document.write("<span>* وصف المشروع </span>"+": "+description+'<br/>');
+document.write("<span>* سنة بدء المشروع </span>"+": "+start+'<br/>');
+document.write("<span>* عدد سنوات عمر المشروع </span>"+": "+years+'<br/>');
+document.write("<span>* رأس المال الابتدائي </span>"+": "+startup+'<br/>');
+document.write("<span>* معدل الفائدة السنوي على الاقتراض </span>"+": "+interest+'%'+'<br/>');
+document.write("<span>* معدل التضخم السنوي السائد </span>"+": "+inflation+'<br/>');
+document.write("<h3>النتائج الإجمالية المتوقعة للمشروع</h3>");
+document.write('<span>* متوسط العائد على الإيراد </span>'+": "+arr+'%'+'<br/>');
+document.write('<span>* متوسط العائد على الاستثمار </span>'+": "+aroi+'%'+'<br/>');
+document.write('<span>* فترة استرجاع رأس المال بالسنوات </span>'+": "+pbk+'<br/>');
+document.write('<span>* صافي القيمة الحالية </span>'+": "+currency+" "+npv+'<br/>');
+document.write("<h3>البيانات التفصيلية لكل عام على حدة</h3>");
+for(i=1;i<(years+1);i++) {
+document.write('<b><u>* السنة '+lyears[i-1]+'</u></b><br/>');
+document.write('<b>قائمة الدخل المتوقعة</b><br/>');
+document.write('الإيراد '+revenues[i-1]+'<br/>');
+document.write('- التكاليف المباشرة '+vcs[i-1]+'<br/>');
+document.write('= هامش الإسهام '+contributions[i-1]+'<br/>');
+document.write('- المصروفات الثابتة '+fixeds[i-1]+'<br/>');
+document.write('= الدخل التشغيلي '+operatings[i-1]+'<br/>');
+document.write('- الإهلاك '+depreciations[i-1]+'<br/>');
+document.write('= الدخل الأساسي '+basics[i-1]+'<br/>');
+document.write('- الفوائد '+interests[i-1]+'<br/>');
+document.write('= الدخل قبل الضرائب '+ebt[i-1]+'<br/>');
+document.write('- الضرائب '+taxes[i-1]+'<br/>');
+document.write('= صافي الدخل بعد الضرائب '+npt[i-1]+'<br/>');
+document.write('<b>المؤشرات المالية المتوقعة</b><br/>');
+document.write('نسبة إجمالي الربح '+list_gpm[i-1]+'<br/>');
+document.write('نسبة الربح التشغيلي '+list_opm[i-1]+'<br/>');
+document.write('هامش التعلية '+list_markups[i-1]+'<br/>');
+document.write('نسبة الربح قبل الضرائب '+list_ebtm[i-1]+'<br/>');
+document.write('نسبة صافي الربح بعد الضرائب '+list_nptm[i-1]+'<br/>');
+document.write('العائد على الاستثمار '+list_roi[i-1]+'<br/>');
+document.write('<b>التدفقات النقدية المتوقعة</b><br/>');
+document.write('إجمالي التدفقات الداخلة '+list_inflows[i-1]+'<br/>');
+document.write('- إجمالي التدفقات الخارجة '+list_outflows[i-1]+'<br/>');
+document.write('= صافي التدفقات النقدية '+list_netflows[i-1]+'<br/><br/>');
+}
+document.write('<div>');
+document.write('<input type="button" value="بدء من جديد" onclick="checker();"/>');
+document.write('</div>');
+</script>
+</body>
+</html>

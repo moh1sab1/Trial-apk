@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function checker() {
+var a=document.getElementById("data_available").value; a=a.trim();
+var b=(a=="");
+if(b) {alert("بيان خاطئ أو ناقص. حاول من جديد"); return;}
+if(!b) {sessionStorage.setItem("data_available",a); window.location="09_interest.html";}
+return;
+}
+</script>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<title>Feasibilities 2017</title>
+</head>
+<body bgcolor="magnetta">
+<p>الخطوة 8 من 14</p>
+<div class="boxed">
+<div>
+<p>النسبة المتاحة معك حاليا من إجمالي رأس المال الابتدائي</p>
+</div>
+<div>
+<select id="data_available"/>
+<option value=""></option>
+<option value="0">0%</option>
+<option value="5">5%</option>
+<option value="10">10%</option>
+<option value="15">15%</option>
+<option value="20">20%</option>
+<option value="25">25%</option>
+<option value="30">30%</option>
+<option value="35">35%</option>
+<option value="40">40%</option>
+<option value="45">45%</option>
+<option value="50">50%</option>
+<option value="55">55%</option>
+<option value="60">60%</option>
+<option value="65">65%</option>
+<option value="70">70%</option>
+<option value="75">75%</option>
+<option value="80">80%</option>
+<option value="85">85%</option>
+<option value="90">90%</option>
+<option value="95">95%</option>
+<option value="100">100%</option>
+</select>
+</div>
+<br/>
+<div>
+<input type="button" value="التالي" onclick="checker();"/>
+</div>
+<br/>
+<div>
+<input type="button" value="السابق" onclick="var r=confirm('Are you sure you want to return back?'); if(r) {window.location='07_startup.html';}"/>
+</div>
+<br/>
+<div>
+<input type="button" value="مساعدة" onclick="alert('This is the percentage of startup capital that is currently available with you, without any borrowing. It cannot be an empty value.');"/>
+</div>
+</div>
+</body>
+</html>
