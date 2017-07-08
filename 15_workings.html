@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="functions.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+function Project(title,author,description,start,years,currency,startup,available,loan,interest,tax,overhead,inflation,products,prices,variables,quantities,pgrowth,vgrowth,qgrowth) {
+this.title=title;
+this.author=author;
+this.description=description;
+this.start=start;
+this.years=years;
+this.currency=currency;
+this.startup=startup;
+this.available=available;
+this.loan=loan;
+this.interest=interest;
+this.tax=tax;
+this.overhead=overhead;
+this.inflation=inflation;
+this.products=products;
+this.prices=trimmer(prices);
+this.variables=trimmer(variables);
+this.quantities=trimmer(quantities);
+this.pgrowth=trimmer(pgrowth);
+this.vgrowth=trimmer(vgrowth);
+this.qgrowth=trimmer(qgrowth);
+this.prices=grower(this.prices,this.pgrowth,this.years,this.products);
+this.variables=grower(this.variables,this.vgrowth,this.years,this.products);
+this.quantities=grower(this.quantities,this.qgrowth,this.years,this.products);
+this.revenues=primator(this.prices,this.quantities);
+this.vcs=primator(this.variables,this.quantities);
+this.contributions=subtractor(this.revenues,this.vcs);
+this.fixeds=list_fixeds(this.overhead,this.inflation,this.years);
+this.operatings=subtractor(this.contributions,this.fixeds);
+this.depreciations=list_depreciations(this.startup,this.years);
+this.basics=subtractor(this.operatings,this.depreciations);
+this.interests=list_interests(this.loan,this.interest,this.years);
+this.ebt=subtractor(this.basics,this.interests);
+this.taxes=list_taxes(this.ebt,this.tax,this.years);
+this.npt=subtractor(this.ebt,this.taxes);
+this.lyears=list_years(this.start,this.years);
+this.lstartups=list_startups(this.startup,this.years);
+this.lloans=list_loans(this.loan,this.years);
+this.lrepayments=list_repayments(this.loan,this.years);
+this.investments=list_investments(this.startup,this.inflation,this.years);
+this.list_inflows=summer(this.lloans,this.revenues);
+this.list_outflows=summer(this.vcs,this.fixeds);
+this.list_outflows=summer(this.list_outflows,this.interests);
+this.list_outflows=summer(this.list_outflows,this.taxes);
+this.list_outflows=summer(this.list_outflows,this.lrepayments);
+this.list_outflows=summer(this.list_outflows,this.lstartups);
+this.list_netflows=subtractor(this.list_inflows,this.list_outflows);
+this.list_gpm=divider(this.contributions,this.revenues)[0];
+this.list_opm=divider(this.operatings,this.revenues)[0];
+this.list_ebtm=divider(this.ebt,this.revenues)[0];
+this.list_markups=divider(this.contributions,this.vcs)[0];
+this.list_nptm=divider(this.npt,this.revenues)[0];
+this.list_roi=divider(this.npt,this.investments)[0];
+this.arr=divider(this.npt,this.revenues)[1]; this.arr=averager(this.arr);
+this.aroi=divider(this.npt,this.investments)[1]; this.aroi=averager(this.aroi);
+this.npv=calc_npv(this.list_netflows,this.startup,this.interest,this.years);
+this.pbk=calc_payback(this.list_netflows,this.startup,this.years);
+sessionStorage.setItem("title",this.title);
+sessionStorage.setItem("author",this.author);
+sessionStorage.setItem("description",this.description);
+sessionStorage.setItem("start",this.start);
+sessionStorage.setItem("years",this.years);
+sessionStorage.setItem("startup",this.startup);
+sessionStorage.setItem("interest",this.interest);
+sessionStorage.setItem("inflation",this.inflation);
+sessionStorage.setItem("currency",this.currency);
+sessionStorage.setItem("revenues",this.revenues);
+sessionStorage.setItem("vcs",this.vcs);
+sessionStorage.setItem("contributions",this.contributions);
+sessionStorage.setItem("fixeds",this.fixeds);
+sessionStorage.setItem("operatings",this.operatings);
+sessionStorage.setItem("depreciations",this.depreciations);
+sessionStorage.setItem("basics",this.basics);
+sessionStorage.setItem("interests",this.interests);
+sessionStorage.setItem("ebt",this.ebt);
+sessionStorage.setItem("taxes",this.taxes);
+sessionStorage.setItem("npt",this.npt);
+sessionStorage.setItem("lyears",this.lyears);
+sessionStorage.setItem("list_inflows",this.list_inflows);
+sessionStorage.setItem("list_outflows",this.list_outflows);
+sessionStorage.setItem("list_netflows",this.list_netflows);
+sessionStorage.setItem("list_gpm",this.list_gpm);
+sessionStorage.setItem("list_opm",this.list_opm);
+sessionStorage.setItem("list_ebtm",this.list_ebtm);
+sessionStorage.setItem("list_markups",this.list_markups);
+sessionStorage.setItem("list_nptm",this.list_nptm);
+sessionStorage.setItem("list_roi",this.list_roi);
+sessionStorage.setItem("arr",this.arr);
+sessionStorage.setItem("aroi",this.aroi);
+sessionStorage.setItem("npv",this.npv);
+sessionStorage.setItem("pbk",this.pbk);
+return;
+};
+</script>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<title>Feasibilities 2017</title>
+</head>
+<body bgcolor="magnetta">
+<div>
+<h1>برنامج دراسات الجدوى<br/>
+الإصدار الأول - 2017<br/>
+برمجة: محمد علي ثابت</h1>
+</div>
+<div>
+<input type="button" value="ابدأ الحسابات" onclick="var data_title=sessionStorage.getItem('data_title');var data_author=sessionStorage.getItem('data_author');var data_description=sessionStorage.getItem('data_description');var data_start=sessionStorage.getItem('data_start');data_start=parseInt(data_start);var data_years=sessionStorage.getItem('data_years');data_years=parseInt(data_years);var data_currency=sessionStorage.getItem('data_currency');var data_startup=sessionStorage.getItem('data_startup');data_startup=parseInt(data_startup);var data_available=sessionStorage.getItem('data_available');data_available=parseInt(data_available);data_available=data_available/100;data_available=data_available*data_startup;data_available=parseInt(data_available);var data_loan=(data_startup)-(data_available);var data_interest=sessionStorage.getItem('data_interest');data_interest=parseInt(data_interest);data_interest=data_interest/100;var data_tax=sessionStorage.getItem('data_tax');data_tax=parseInt(data_tax);data_tax=data_tax/100;var data_overhead=sessionStorage.getItem('data_overhead');data_overhead=parseInt(data_overhead);var data_inflation=sessionStorage.getItem('data_inflation');data_inflation=parseInt(data_inflation);data_inflation=data_inflation/100;var data_products=sessionStorage.getItem('data_products');data_products=parseInt(data_products);var data_p=splitter(sessionStorage.getItem('data_p'));var data_v=splitter(sessionStorage.getItem('data_v'));var data_q=splitter(sessionStorage.getItem('data_q'));var data_pg=splitter(sessionStorage.getItem('data_pg'));var data_vg=splitter(sessionStorage.getItem('data_vg'));var data_qg=splitter(sessionStorage.getItem('data_qg'));sessionStorage.clear();var template=new Project(data_title,data_author,data_description,data_start,data_years,data_currency,data_startup,data_available,data_loan,data_interest,data_tax,data_overhead,data_inflation,data_products,data_p,data_v,data_q,data_pg,data_vg,data_qg);alert('تم إجراء جميع الحسابات بنجاح');window.location='16_results.html';"/>
+</div>
+<br/>
+</body>
+</html>
